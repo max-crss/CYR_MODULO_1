@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía de Repaso – Cableado Estructurado | 3° Medio TP</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #F5F7FA;
+      color: #2C3E50;
+      line-height: 1.7;
+    }
+    @media print {
+      body { background: white; }
+      .no-print { display: none; }
+      .page-break { page-break-before: always; }
+    }
+
+    /* ===== COVER PAGE ===== */
+    .cover {
+      background: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .cover .logo {
+      font-size: 70px;
+      margin-bottom: 20px;
+    }
+    .cover h1 {
+      font-size: 2.8em;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+    .cover h2 {
+      font-size: 1.6em;
+      color: #F39C12;
+      margin-bottom: 30px;
+    }
+    .cover .cover-info {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 30px 50px;
+      margin: 20px 0;
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+    }
+    .cover .cover-info p {
+      font-size: 1.1em;
+      margin: 8px 0;
+    }
+    .cover .cover-info strong { color: #F39C12; }
+    .cover .badge {
+      display: inline-block;
+      background: #E74C3C;
+      color: white;
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-top: 20px;
+    }
+    .cover .objectives {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .cover .obj-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      max-width: 200px;
+      font-size: 0.9em;
+    }
+    .cover .obj-card .icon { font-size: 2em; margin-bottom: 8px; }
+
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+
+    /* ===== INDEX ===== */
+    .index-section {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin: 40px 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .index-section h2 { color: #1A1A2E; font-size: 1.8em; margin-bottom: 20px; border-bottom: 3px solid #F39C12; padding-bottom: 10px; }
+    .index-list { list-style: none; }
+    .index-list li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #ECF0F1;
+      display: flex;
+      justify-content: space-between;
+    }
+    .index-list li a { text-decoration: none; color: #2980B9; font-weight: 600; }
+    .index-list li a:hover { color: #E74C3C; }
+    .index-list li .page-num { color: #7F8C8D; font-size: 0.9em; }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      background: linear-gradient(135deg, #1A1A2E, #2C3E50);
+      color: white;
+      padding: 30px 40px;
+      border-radius: 16px;
+      margin: 50px 0 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 120px; height: 120px;
+      background: rgba(243, 156, 18, 0.2);
+      border-radius: 50%;
+    }
+    .section-header .part-num {
+      font-size: 0.9em;
+      color: #F39C12;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 700;
+    }
+    .section-header h2 { font-size: 2em; margin: 8px 0 4px; }
+    .section-header p { color: #BDC3C7; font-size: 1em; }
+
+    /* ===== QUESTION SECTION ===== */
+    .question-section {
+      background: white;
+      border-radius: 16px;
+      padding: 30px 40px;
+      margin: 20px 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      border-left: 5px solid #2980B9;
+    }
+    .question-section h3 {
+      color: #2980B9;
+      font-size: 1.3em;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #EBF5FB;
+    }
+
+    /* ===== QUESTION CARDS ===== */
+    .question-card {
+      background: #FAFBFC;
+      border: 1px solid #E8EAED;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+      transition: box-shadow 0.2s;
+    }
+    .question-card:hover { box-shadow: 0 6px 25px rgba(0,0,0,0.1); }
+    .question-num {
+      display: inline-block;
+      background: #2980B9;
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.85em;
+      margin-bottom: 12px;
+    }
+    .question-text {
+      font-size: 1.05em;
+      font-weight: 600;
+      color: #1A1A2E;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .options { list-style: none; }
+    .options li {
+      padding: 10px 16px;
+      margin: 6px 0;
+      border-radius: 8px;
+      border: 2px solid #E8EAED;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95em;
+    }
+    .options li:hover { border-color: #2980B9; background: #EBF5FB; }
+    .options li.correct {
+      border-color: #27AE60;
+      background: #EAFAF1;
+      color: #1D8348;
+      font-weight: 700;
+    }
+    .options li .option-letter {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background: #2C3E50;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-weight: bold;
+      font-size: 0.85em;
+      margin-right: 10px;
+    }
+    .options li.correct .option-letter { background: #27AE60; }
+    .correct-badge {
+      display: inline-block;
+      background: #27AE60;
+      color: white;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: bold;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .explanation-box {
+      background: #EBF5FB;
+      border-left: 4px solid #2980B9;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 14px;
+      font-size: 0.9em;
+      color: #1A5276;
+    }
+    .explanation-box strong { color: #154360; }
+    .reference-tag {
+      display: inline-block;
+      background: #EBF5FB;
+      color: #1A5276;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    /* ===== EXERCISE SECTION ===== */
+    .exercise-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px 40px;
+      margin: 24px 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      border-top: 5px solid #27AE60;
+    }
+    .exercise-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .exercise-num {
+      background: #27AE60;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .exercise-title { font-size: 1.4em; font-weight: 800; color: #1A1A2E; }
+    .exercise-subtitle { color: #27AE60; font-weight: 600; font-size: 0.95em; }
+
+    .exercise-block {
+      background: #F8FFF9;
+      border: 1px solid #D5F5E3;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 14px 0;
+    }
+    .exercise-block h4 {
+      color: #1D8348;
+      font-size: 1em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85em;
+    }
+    .exercise-block ul { padding-left: 20px; }
+    .exercise-block ul li { margin: 6px 0; font-size: 0.95em; }
+
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .component-chip {
+      background: #EBF5FB;
+      border: 1px solid #AED6F1;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.85em;
+      font-weight: 600;
+      color: #1A5276;
+      text-align: center;
+    }
+
+    .task-list { list-style: none; }
+    .task-list li {
+      padding: 8px 14px;
+      margin: 6px 0;
+      background: #FDFEFE;
+      border-left: 3px solid #27AE60;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.95em;
+    }
+    .task-list li::before { content: '→ '; color: #27AE60; font-weight: bold; }
+
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.9em;
+    }
+    .doc-table th {
+      background: #1D8348;
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .doc-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #E8EAED;
+    }
+    .doc-table tr:nth-child(even) td { background: #F8FFF9; }
+    .doc-table tr:hover td { background: #D5F5E3; }
+
+    .alert-box {
+      background: #FEF9E7;
+      border: 2px solid #F39C12;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 0.9em;
+    }
+    .alert-box strong { color: #7D6608; }
+
+    .problem-list {
+      list-style: none;
+    }
+    .problem-list li {
+      padding: 10px 16px;
+      margin: 8px 0;
+      border-radius: 8px;
+      font-size: 0.95em;
+    }
+    .problem-list li.problem {
+      background: #FDEDEC;
+      border-left: 4px solid #E74C3C;
+    }
+    .problem-list li.solution {
+      background: #EAFAF1;
+      border-left: 4px solid #27AE60;
+    }
+
+    /* ===== ANSWER KEY ===== */
+    .answer-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 16px 0;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+      border-left: 5px solid #8E44AD;
+    }
+    .answer-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .answer-num {
+      background: #8E44AD;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    .answer-letter {
+      background: #27AE60;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      font-weight: 900;
+    }
+    .answer-text {
+      font-size: 0.95em;
+      color: #1A1A2E;
+      line-height: 1.7;
+    }
+    .answer-norm {
+      display: inline-block;
+      background: #EBF5FB;
+      color: #1A5276;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.78em;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    /* ===== ANNEXES ===== */
+    .annex-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9em;
+      margin: 16px 0;
+    }
+    .annex-table th {
+      background: #1A1A2E;
+      color: #F39C12;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .annex-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #E8EAED;
+    }
+    .annex-table tr:nth-child(even) td { background: #F5F5F5; }
+    .annex-table tr:hover td { background: #EBF5FB; }
+
+    /* ===== UTILITY ===== */
+    .badge-red { display: inline-block; background: #E74C3C; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
+    .badge-blue { display: inline-block; background: #2980B9; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
+    .badge-green { display: inline-block; background: #27AE60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .info-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .info-card .icon { font-size: 2.5em; margin-bottom: 10px; }
+    .info-card h4 { color: #1A1A2E; font-size: 0.95em; font-weight: 700; }
+    .info-card p { color: #7F8C8D; font-size: 0.85em; }
+
+    hr.section-divider {
+      border: none;
+      border-top: 3px solid #ECF0F1;
+      margin: 40px 0;
+    }
+
+    .footer {
+      background: #1A1A2E;
+      color: #95A5A6;
+      text-align: center;
+      padding: 24px;
+      font-size: 0.9em;
+    }
+    .footer strong { color: #F39C12; }
+  </style>
+</head>
+<body>
+
+<!-- ========== COVER PAGE ========== -->
+<div class="cover" id="cover">
+  <div class="logo">🌐</div>
+  <h1>Guía de Repaso Completa</h1>
+  <h2>Cableado Estructurado</h2>
+  <div class="cover-info">
+    <p><strong>Colegio:</strong> Colegio Técnico Profesional</p>
+    <p><strong>Curso:</strong> 3° Medio TP — Conectividad y Redes</p>
+    <p><strong>Asignatura:</strong> Instalación de Redes</p>
+    <p><strong>Módulo:</strong> Módulo 1 — Cableado Estructurado</p>
+    <p><strong>Fecha:</strong> 2026</p>
+    <p><strong>Docente:</strong> Conectividad y Redes TP</p>
+  </div>
+  <div class="badge">Trabajo Autónomo — Sin Guía Paso a Paso</div>
+  <div class="objectives">
+    <div class="obj-card">
+      <div class="icon">📝</div>
+      <strong>20 Preguntas</strong>
+      <p>Alternativa múltiple en 4 secciones</p>
+    </div>
+    <div class="obj-card">
+      <div class="icon">🖥️</div>
+      <strong>5 Ejercicios</strong>
+      <p>Prácticos en Packet Tracer</p>
+    </div>
+    <div class="obj-card">
+      <div class="icon">✅</div>
+      <strong>Clave</strong>
+      <p>Respuestas con explicaciones detalladas</p>
+    </div>
+    <div class="obj-card">
+      <div class="icon">📏</div>
+      <strong>Normas</strong>
+      <p>TIA/EIA-568A/B, IEEE 802.3</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MAIN CONTENT ========== -->
+<div class="container">
+
+  <!-- INDEX -->
+  <div class="index-section" id="index">
+    <h2>📋 Índice</h2>
+    <ul class="index-list">
+      <li><a href="#instrucciones">Instrucciones de Uso</a><span class="page-num">Sec. 0</span></li>
+      <li><a href="#parte1">Parte I — Preguntas de Alternativa (20 preguntas)</a><span class="page-num">Sec. 1</span></li>
+      <li><a href="#secA">Sección A: Conceptos Generales de Cableado Estructurado</a><span class="page-num">1A</span></li>
+      <li><a href="#secB">Sección B: Equipos de Red</a><span class="page-num">1B</span></li>
+      <li><a href="#secC">Sección C: Cables y Normas</a><span class="page-num">1C</span></li>
+      <li><a href="#secD">Sección D: Aplicación Práctica y Problemas</a><span class="page-num">1D</span></li>
+      <li><a href="#parte2">Parte II — Ejercicios Prácticos en Packet Tracer (5 ejercicios)</a><span class="page-num">Sec. 2</span></li>
+      <li><a href="#ej1">Ejercicio 1: Red Simple con Topología Física Básica</a><span class="page-num">2.1</span></li>
+      <li><a href="#ej2">Ejercicio 2: Implementar Patch Panel y Wall Mounts</a><span class="page-num">2.2</span></li>
+      <li><a href="#ej3">Ejercicio 3: Topología Multiubicación (Múltiples Pisos)</a><span class="page-num">2.3</span></li>
+      <li><a href="#ej4">Ejercicio 4: Empresa Mediana con Múltiples Servidores</a><span class="page-num">2.4</span></li>
+      <li><a href="#ej5">Ejercicio 5: Caso de Estudio — Solución de Problemas</a><span class="page-num">2.5</span></li>
+      <li><a href="#parte3">Parte III — Clave de Respuestas</a><span class="page-num">Sec. 3</span></li>
+      <li><a href="#anexos">Anexos: Tablas de Referencia y Normas</a><span class="page-num">Anex.</span></li>
+    </ul>
+  </div>
+
+  <!-- INSTRUCTIONS -->
+  <div class="index-section" id="instrucciones">
+    <h2>📖 Instrucciones de Uso</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="icon">🎯</div>
+        <h4>Objetivo</h4>
+        <p>Repasar todos los contenidos del módulo de Cableado Estructurado de forma autónoma</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">⏱️</div>
+        <h4>Tiempo estimado</h4>
+        <p>Parte I: 45 min | Parte II: 2-3 hrs | Verificación: 30 min</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">📌</div>
+        <h4>Metodología</h4>
+        <p>Responde sin ver la clave. Luego verifica y analiza tus errores</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">🛠️</div>
+        <h4>Herramientas</h4>
+        <p>Parte II requiere Cisco Packet Tracer versión 8.x o superior</p>
+      </div>
+    </div>
+    <div class="alert-box">
+      <strong>⚠️ Importante:</strong> Esta guía está diseñada para trabajo <strong>autónomo</strong>. 
+      No hay instrucciones paso a paso. Deberás aplicar los conocimientos adquiridos en clases para completar 
+      los ejercicios. Consulta tus apuntes, el libro de texto y las normas TIA/EIA si tienes dudas.
+    </div>
+    <ul style="padding-left:20px; margin-top:14px;">
+      <li>Lee cada pregunta completa antes de responder</li>
+      <li>En los ejercicios de Packet Tracer, documenta TODO con tablas y etiquetas</li>
+      <li>La clave de respuestas está al final del documento (Parte III)</li>
+      <li>Cada respuesta incluye explicación técnica detallada</li>
+      <li>Los Anexos contienen tablas de especificaciones para consulta</li>
+    </ul>
+  </div>
+
+  <!-- ========== PARTE I ========== -->
+  <div class="section-header" id="parte1">
+    <div class="part-num">Parte I</div>
+    <h2>📝 Preguntas de Alternativa</h2>
+    <p>20 preguntas distribuidas en 4 secciones — Selecciona la alternativa correcta (A, B, C o D)</p>
+  </div>
+
+  <!-- SECCIÓN A -->
+  <div class="question-section" id="secA">
+    <h3>🔌 Sección A — Conceptos Generales de Cableado Estructurado (Preguntas 1-5)</h3>
+
+    <!-- Q1 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 1</span>
+      <div class="question-text">¿Cuál de las siguientes definiciones describe correctamente el concepto de <strong>Cableado Estructurado</strong>?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Sistema de cableado que utiliza únicamente cables de fibra óptica para conectar dispositivos de red.</li>
+        <li class="correct"><span class="option-letter">B</span> Sistema estandarizado de cableado que organiza el cableado de telecomunicaciones de un edificio en subsistemas definidos, siguiendo normas internacionales. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">C</span> Método de instalar cables sin ningún tipo de planificación previa, adaptándose a las necesidades del momento.</li>
+        <li><span class="option-letter">D</span> Conjunto de cables eléctricos utilizados exclusivamente para la transmisión de energía en instalaciones industriales.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> El cableado estructurado es un sistema de cableado <em>estandarizado</em> que organiza toda la infraestructura de telecomunicaciones en subsistemas (horizontal, backbone, área de trabajo). Permite que cualquier técnico pueda instalar, mantener y solucionar problemas sin depender de quien lo instaló originalmente. Sigue normas como TIA/EIA-568 y garantiza flexibilidad para cualquier tecnología actual o futura.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568 | Definición de Cableado Estructurado</span>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 2</span>
+      <div class="question-text">¿Cuáles son los <strong>principales componentes</strong> de un sistema de cableado estructurado?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Solo cables UTP Cat6 y conectores RJ45.</li>
+        <li><span class="option-letter">B</span> Cables coaxiales, antenas WiFi y repetidores inalámbricos.</li>
+        <li class="correct"><span class="option-letter">C</span> Cables (UTP/FTP/fibra), conectores, patch panels, racks, wall mounts, canaletas, y cuartos de telecomunicaciones. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> Únicamente routers y switches conectados entre sí con cualquier tipo de cable.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> Un sistema de cableado estructurado completo incluye múltiples componentes físicos: los <strong>cables</strong> (medio de transmisión), <strong>conectores</strong> (terminaciones), <strong>patch panels</strong> (organización central), <strong>racks</strong> (gabinetes), <strong>wall mounts/tomas</strong> (puntos de red en las oficinas), <strong>canaletas y ductos</strong> (protección y organización de cables), y los <strong>cuartos de telecomunicaciones</strong> (MDF/IDF). La combinación de todos estos elementos constituye la infraestructura completa.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568B | Componentes del Sistema</span>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 3</span>
+      <div class="question-text">¿Cuál es la <strong>función principal de un Rack</strong> en una instalación de red?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Amplificar la señal de red para aumentar la distancia máxima de transmisión.</li>
+        <li><span class="option-letter">B</span> Almacenar los datos de los usuarios de la red de forma segura.</li>
+        <li class="correct"><span class="option-letter">C</span> Organizar y alojar físicamente los equipos activos y pasivos de red (routers, switches, patch panels, servidores) en un espacio ordenado y seguro. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> Convertir señales analógicas en señales digitales para la transmisión de datos.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> Un <strong>rack</strong> (gabinete de telecomunicaciones) es una estructura metálica estandarizada (generalmente 19 pulgadas de ancho) diseñada para albergar equipos de red. Su función es: (1) organizar físicamente los equipos, (2) facilitar el mantenimiento, (3) mejorar el flujo de aire para refrigeración, (4) proteger los equipos del entorno, y (5) permitir fácil acceso a conexiones. Los equipos se miden en unidades "U" (1U = 1.75 pulgadas de altura).
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-569 | Espacios para Telecomunicaciones</span>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 4</span>
+      <div class="question-text">Los estándares <strong>TIA/EIA</strong> en redes de datos son publicados por:</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> La Unión Internacional de Telecomunicaciones (ITU) y el gobierno de EE.UU.</li>
+        <li><span class="option-letter">B</span> Cisco Systems y sus socios tecnológicos a nivel mundial.</li>
+        <li class="correct"><span class="option-letter">C</span> La Telecommunications Industry Association (TIA) y la Electronic Industries Alliance (EIA), organismos normativos de EE.UU. reconocidos internacionalmente. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> El Instituto de Ingenieros Eléctricos y Electrónicos (IEEE) exclusivamente.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> <strong>TIA</strong> (Telecommunications Industry Association) y <strong>EIA</strong> (Electronic Industries Alliance) son las organizaciones que publican los estándares más utilizados en cableado estructurado. Los más importantes son: TIA/EIA-568 (cableado de telecomunicaciones en edificios comerciales), TIA/EIA-569 (espacios y rutas de telecomunicaciones), TIA/EIA-606 (administración del cableado). Aunque el IEEE también publica normas de red (802.3 para Ethernet), TIA/EIA es el organismo principal para cableado estructurado.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568A/B | Historia y Organismos Normativos</span>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 5</span>
+      <div class="question-text">¿Cuál es la <strong>principal ventaja</strong> del cableado estructurado sobre el cableado desorganizado?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> El cableado estructurado es siempre más barato en la instalación inicial.</li>
+        <li><span class="option-letter">B</span> Permite transmitir datos a mayor velocidad que cualquier otro tipo de instalación.</li>
+        <li class="correct"><span class="option-letter">C</span> Facilita la administración, el mantenimiento, la detección de fallas y la escalabilidad de la red, independientemente de la tecnología utilizada. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> Elimina completamente la necesidad de equipos activos como switches y routers.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> La principal ventaja del cableado estructurado no es la velocidad ni el costo inicial, sino la <strong>administrabilidad</strong>: (1) <em>Flexibilidad</em>: fácil reconfiguración mediante patch cords, (2) <em>Mantenimiento</em>: cualquier técnico puede identificar y reparar problemas, (3) <em>Escalabilidad</em>: agregar más puntos de red es simple, (4) <em>Documentación</em>: el sistema etiquetado permite trazabilidad completa, (5) <em>Independencia tecnológica</em>: soporta múltiples tecnologías (Ethernet, telefónica, etc.) con la misma infraestructura.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568 | Beneficios del Cableado Estructurado</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN B -->
+  <div class="question-section" id="secB">
+    <h3>🖥️ Sección B — Equipos de Red (Preguntas 6-10)</h3>
+
+    <!-- Q6 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 6</span>
+      <div class="question-text">El <strong>Router Cisco 2911</strong> opera principalmente en la Capa:</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Capa 1 (Física) del modelo OSI, gestionando señales eléctricas.</li>
+        <li><span class="option-letter">B</span> Capa 2 (Enlace de Datos), trabajando con direcciones MAC.</li>
+        <li class="correct"><span class="option-letter">C</span> Capa 3 (Red) del modelo OSI, enrutando paquetes entre redes distintas mediante direcciones IP. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> Capa 7 (Aplicación), procesando datos de aplicaciones como HTTP y FTP.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> El <strong>Router Cisco 2911 ISR G2</strong> es un dispositivo de Capa 3 (Red). Su función principal es <strong>enrutar paquetes entre redes diferentes</strong> usando direcciones IP. Tiene 3 puertos GigabitEthernet, permite módulos de expansión (WAN, serial), y utiliza protocolos de enrutamiento como OSPF, EIGRP y RIP. Al operar en Capa 3, puede fragmentar y reensamblar paquetes, aplicar ACLs, y realizar NAT para conectar la red interna con Internet.
+        <br><span class="reference-tag">📚 Ref: Modelo OSI Capa 3 | Router Cisco 2911 ISR G2</span>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 7</span>
+      <div class="question-text">El <strong>Switch Cisco Catalyst 2960</strong> tiene las siguientes características técnicas:</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> 8 puertos FastEthernet (100 Mbps), opera en Capa 3, sin capacidad de VLAN.</li>
+        <li class="correct"><span class="option-letter">B</span> 24 puertos 10/100/1000 Mbps (Gigabit), opera en Capa 2, soporta VLANs, spanning tree y QoS. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">C</span> 48 puertos de fibra óptica a 10 Gbps, solo para conexiones de backbone.</li>
+        <li><span class="option-letter">D</span> 12 puertos USB para conectar dispositivos de almacenamiento masivo.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> El <strong>Cisco Catalyst 2960-24TT</strong> es un switch de Capa 2 con: <strong>24 puertos 10/100/1000BASE-T</strong> (Gigabit Ethernet) + 2 puertos uplink (SFP o Gigabit). Soporta VLANs (802.1Q), Spanning Tree Protocol (STP/RSTP), QoS (calidad de servicio), PoE en versiones "-P", y administración por interfaz CLI, Telnet/SSH y SNMP. Al operar en Capa 2, trabaja con direcciones MAC para conmutar tramas dentro de la misma red.
+        <br><span class="reference-tag">📚 Ref: Cisco Catalyst 2960 | Capa 2 OSI | IEEE 802.3ab</span>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 8</span>
+      <div class="question-text">¿Cuál es la <strong>diferencia fundamental</strong> entre un Switch y un Router?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> El switch es más caro que el router y solo se usa en redes empresariales.</li>
+        <li><span class="option-letter">B</span> El router conecta computadores dentro de una misma red; el switch conecta redes diferentes.</li>
+        <li class="correct"><span class="option-letter">C</span> El switch conecta dispositivos dentro de una misma red (LAN) usando MACs (Capa 2); el router conecta redes distintas usando IPs (Capa 3). <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> No hay diferencia real; ambos dispositivos realizan exactamente las mismas funciones.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> La diferencia es de <strong>capa OSI y función</strong>: El <strong>Switch</strong> (Capa 2) usa <em>direcciones MAC</em> para reenviar tramas dentro de la misma LAN; aprende las MACs de cada puerto y conmuta tráfico solo hacia el destino. El <strong>Router</strong> (Capa 3) usa <em>direcciones IP</em> para enrutar paquetes entre <em>redes diferentes</em>; toma decisiones de enrutamiento basadas en tablas de rutas y puede conectar la LAN con Internet u otras redes remotas.
+        <br><span class="reference-tag">📚 Ref: Modelo OSI | Capas 2 y 3 | Switching vs Routing</span>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 9</span>
+      <div class="question-text">¿Cuál es la función del <strong>Patch Panel</strong> y qué técnica se usa para terminar los cables?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Amplificar la señal de red y se usa la técnica de soldadura para unir cables.</li>
+        <li class="correct"><span class="option-letter">B</span> Centralizar las conexiones de cableado horizontal y de backbone, terminando los cables con la técnica Punchdown (110) que inserta los conductores en contactos IDC. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">C</span> Convertir señales analógicas a digitales, usando conectorización RJ11 estándar.</li>
+        <li><span class="option-letter">D</span> Gestionar el tráfico de red filtrando paquetes y usando técnica de crimpado RJ45.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> El <strong>Patch Panel</strong> es un dispositivo pasivo que centraliza todas las terminaciones de cables de red. Por la parte trasera se terminan los cables con técnica <strong>Punchdown (110)</strong>: se insertan los conductores individualmente en contactos IDC (Insulation Displacement Contact) usando una herramienta especial (punch down tool), que inserta el conductor y corta el exceso al mismo tiempo. Por la parte delantera se conectan los <em>patch cords</em> hacia el switch. Esto permite reconfigurar conexiones sin tocar el cableado fijo.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568 | Técnica Punchdown 110 | Patch Panel</span>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 10</span>
+      <div class="question-text">Un <strong>Wall Mount (Toma de Pared)</strong> en cableado estructurado:</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Es el dispositivo que proporciona energía eléctrica a los equipos de red.</li>
+        <li><span class="option-letter">B</span> Es un switch pequeño instalado en la pared para conectar más dispositivos localmente.</li>
+        <li class="correct"><span class="option-letter">C</span> Es el punto de acceso a la red en el área de trabajo; se instala en la pared y se conecta mediante cable horizontal hasta el Patch Panel en el cuarto de telecomunicaciones. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> Es un dispositivo de seguridad que bloquea accesos no autorizados a la red.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> El <strong>Wall Mount</strong> (también llamado Toma de Pared, Face Plate o Punto de Consolidación) es el componente del subsistema de <em>área de trabajo</em> del cableado estructurado. Se instala a una altura estándar en la pared (generalmente 30 cm del piso) y proporciona los conectores RJ45 a los que se conectan los equipos del usuario mediante patch cords. Desde el Wall Mount, el cable horizontal (Cat5e/Cat6) recorre por canaletas hasta llegar al Patch Panel en el rack.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568 | Subsistema de Área de Trabajo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN C -->
+  <div class="question-section" id="secC">
+    <h3>🔧 Sección C — Cables y Normas (Preguntas 11-15)</h3>
+
+    <!-- Q11 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 11</span>
+      <div class="question-text">¿Cuál es la diferencia entre <strong>Cable Cat5e y Cat6</strong> en términos de velocidad y frecuencia?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Cat5e soporta hasta 10 Mbps a 16 MHz; Cat6 soporta hasta 100 Mbps a 100 MHz.</li>
+        <li><span class="option-letter">B</span> Cat5e y Cat6 son idénticos en rendimiento; solo difieren en el color de la cubierta.</li>
+        <li class="correct"><span class="option-letter">C</span> Cat5e soporta hasta 1 Gbps a 100 MHz; Cat6 soporta hasta 10 Gbps (a 55m) a 250 MHz, con mejor cancelación de diafonía. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> Cat5e soporta 100 Gbps a 1000 MHz; Cat6 es una versión antigua y menos eficiente.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> <strong>Cat5e</strong> (Enhanced): frecuencia hasta 100 MHz, velocidad máxima 1 Gbps (1000BASE-T) a 100m. <strong>Cat6</strong>: frecuencia hasta 250 MHz, velocidad 1 Gbps a 100m y hasta 10 Gbps (10GBASE-T) a 55m. La Cat6 tiene especificaciones más estrictas de diafonía (crosstalk) y ruido, logrando mediante separador interno (spline) que separa los 4 pares. Cat6A extiende los 10 Gbps a 100m. La elección entre Cat5e y Cat6 depende de los requerimientos de velocidad futura.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568B.2 | Especificaciones Cat5e y Cat6</span>
+      </div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 12</span>
+      <div class="question-text">En la <strong>Norma TIA/EIA-568B</strong>, el orden correcto de los pares en el conector RJ45 es:</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Pin 1: Blanco-Verde, Pin 2: Verde, Pin 3: Blanco-Naranja, Pin 4: Azul...</li>
+        <li class="correct"><span class="option-letter">B</span> Pin 1: Blanco-Naranja, Pin 2: Naranja, Pin 3: Blanco-Verde, Pin 4: Azul, Pin 5: Blanco-Azul, Pin 6: Verde, Pin 7: Blanco-Café, Pin 8: Café. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">C</span> Pin 1: Blanco-Azul, Pin 2: Azul, Pin 3: Blanco-Naranja, Pin 4: Verde...</li>
+        <li><span class="option-letter">D</span> El orden de colores no importa siempre que ambos extremos sean iguales.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> La norma <strong>T568B</strong> define el orden: (1) Bl-Naranja, (2) Naranja, (3) Bl-Verde, (4) Azul, (5) Bl-Azul, (6) Verde, (7) Bl-Café, (8) Café. La norma <strong>T568A</strong> es diferente: (1) Bl-Verde, (2) Verde, (3) Bl-Naranja, (4) Azul, (5) Bl-Azul, (6) Naranja, (7) Bl-Café, (8) Café. T568B es la más utilizada en EE.UU. y Chile. Un cable con T568B en ambos extremos es <em>Straight-Through</em>. Un cable con T568A en un extremo y T568B en el otro es <em>Crossover</em>.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568A y 568B | Terminación de Cables RJ45</span>
+      </div>
+    </div>
+
+    <!-- Q13 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 13</span>
+      <div class="question-text">¿Cuándo se debe usar un <strong>cable Crossover</strong> y cuándo un <strong>Straight-Through</strong>?</div>
+      <ul class="options">
+        <li class="correct"><span class="option-letter">A</span> Straight-Through: entre dispositivos de diferente tipo (PC-Switch, Switch-Router). Crossover: entre dispositivos del mismo tipo (PC-PC, Switch-Switch), aunque con Auto-MDIX ya no es necesario. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">B</span> Crossover siempre para conexiones más rápidas; Straight-Through para conexiones lentas.</li>
+        <li><span class="option-letter">C</span> Solo se usa Crossover en redes inalámbricas; Straight-Through en redes cableadas.</li>
+        <li><span class="option-letter">D</span> Straight-Through entre switches; Crossover entre switches y routers siempre.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> <strong>Straight-Through (T568B - T568B):</strong> Se usa entre dispositivos de diferente tipo: PC→Switch, Switch→Router, PC→Router. Los pines de transmisión (TX) de un lado se conectan con los pines de recepción (RX) del otro. <strong>Crossover (T568A - T568B):</strong> Se usa entre dispositivos del mismo tipo: PC→PC, Switch→Switch, Router→Router. Cruza TX con RX manualmente. <strong>Nota actual:</strong> Los equipos modernos tienen <em>Auto-MDIX</em> que detecta automáticamente el tipo de conexión, haciendo el crossover obsoleto en la mayoría de casos.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568 | Cables Straight-Through y Crossover | IEEE 802.3ab</span>
+      </div>
+    </div>
+
+    <!-- Q14 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 14</span>
+      <div class="question-text">¿Cuál es la <strong>distancia máxima permitida</strong> para un segmento de cableado horizontal (incluyendo patch cords) según TIA/EIA-568?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> 50 metros en total, sin importar el tipo de cable.</li>
+        <li><span class="option-letter">B</span> 200 metros para cables Cat6 y 100 metros para Cat5e.</li>
+        <li class="correct"><span class="option-letter">C</span> 100 metros en total: 90 metros de cable fijo horizontal + máximo 10 metros en patch cords (5m en área de trabajo + 5m en rack). <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> 500 metros, equivalente a la distancia máxima de un segmento de fibra óptica.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> Según TIA/EIA-568, el canal horizontal tiene una longitud máxima de <strong>100 metros</strong> total, distribuidos así: <strong>90m</strong> de cable horizontal fijo (desde el patch panel hasta el wall mount, pasando por canaletas), más <strong>10m</strong> para patch cords (5m máximo de patch cord del área de trabajo del usuario + 5m máximo de patch cord en el rack). Superar los 100m puede causar atenuación excesiva, aumento de BER (tasa de error) y pérdida de conectividad Gigabit.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568B.1 | Canal Horizontal | Distancias Máximas</span>
+      </div>
+    </div>
+
+    <!-- Q15 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 15</span>
+      <div class="question-text">¿Qué categoría de cable se recomienda para instalaciones nuevas que requieran soportar <strong>Gigabit Ethernet actual y 10 Gigabit a futuro</strong>?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Cat3, ya que soporta hasta 10 Mbps y es suficiente para uso doméstico.</li>
+        <li><span class="option-letter">B</span> Cat5e, que ya incluye soporte para 10GbE sin ninguna limitación de distancia.</li>
+        <li class="correct"><span class="option-letter">C</span> Cat6A (Augmented Category 6), que soporta 10 Gbps a la distancia completa de 100 metros a 500 MHz, ideal para instalaciones nuevas con proyección futura. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> Cat4, ya que es el estándar más reciente publicado por TIA/EIA para redes modernas.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> Para instalaciones nuevas con proyección a 10 Gbps a distancia completa (100m), se recomienda <strong>Cat6A</strong> (Augmented Cat6): 500 MHz, 10GBASE-T a 100m. Cat5e: 1 Gbps a 100m. Cat6: 10 Gbps solo a 55m. Cat6A: 10 Gbps a 100m. Cat7/Cat8: para centros de datos (40-100 GbE). Cat3 es obsoleta (token ring/telefónica). Cat4 también obsoleta. La elección Cat6 vs Cat6A depende del presupuesto y las necesidades de escalabilidad del proyecto.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568C.2 | Cat6A | Tabla de Categorías de Cable</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN D -->
+  <div class="question-section" id="secD">
+    <h3>⚙️ Sección D — Aplicación Práctica y Problemas (Preguntas 16-20)</h3>
+
+    <!-- Q16 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 16</span>
+      <div class="question-text">Para evitar <strong>interferencias electromagnéticas (EMI)</strong> en cables UTP, ¿cuál es la recomendación correcta?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Instalar los cables de red junto a los cables eléctricos de corriente alterna para compartir la canaleta.</li>
+        <li class="correct"><span class="option-letter">B</span> Mantener los cables de red separados de fuentes de EMI (cables eléctricos, motores, fluorescentes). Si deben cruzarse, hacerlo en ángulo de 90°. Usar cable FTP/STP en ambientes con alta interferencia. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">C</span> Aumentar la velocidad de transmisión para que las interferencias no afecten la señal.</li>
+        <li><span class="option-letter">D</span> Las interferencias solo afectan a cables de fibra óptica, no a cables de cobre.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> Las interferencias EMI son uno de los principales problemas en redes cableadas. Medidas preventivas: (1) <strong>Separación física</strong>: mantener mínimo 15-30 cm entre cables de datos y eléctricos, (2) <strong>Cruce perpendicular</strong>: si deben cruzarse, hacerlo a 90° para minimizar interferencia inductiva, (3) <strong>Canaletas separadas</strong>: canaletas distintas para datos y electricidad, (4) <strong>Cable apantallado (FTP/STP)</strong>: en ambientes industriales o con mucha interferencia, usar cable con apantallamiento metálico, (5) Evitar motores, transformadores y tubos fluorescentes próximos.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-569 | Separación de Cables | Protección EMI</span>
+      </div>
+    </div>
+
+    <!-- Q17 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 17</span>
+      <div class="question-text">En un edificio de múltiples pisos, ¿qué topología física se recomienda para el cableado entre pisos?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Topología en anillo, conectando cada piso al anterior en serie circular.</li>
+        <li><span class="option-letter">B</span> Topología en malla completa, conectando directamente todos los pisos entre sí.</li>
+        <li class="correct"><span class="option-letter">C</span> Topología jerárquica (estrella extendida): un MDF (Main Distribution Frame) central conecta a IDFs (Intermediate Distribution Frames) en cada piso mediante backbone, y cada IDF distribuye el cableado horizontal de su piso. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> Topología bus, pasando un cable troncal por todos los pisos al que se conectan todos los dispositivos.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> TIA/EIA-568 define una <strong>topología jerárquica en estrella</strong> para edificios: el <strong>MDF</strong> (o TR principal) aloja el router, switch core y la conexión al ISP. Desde el MDF, el <strong>backbone</strong> (cable de mayor categoría o fibra óptica) conecta a los <strong>IDFs</strong> (cuartos de telecomunicaciones secundarios) de cada piso. Cada IDF tiene su propio switch de distribución y patch panel que distribuye el cableado horizontal de ese piso hacia los wall mounts de las oficinas. Esta estructura facilita el mantenimiento y la escalabilidad.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-568 | Topología en Estrella | MDF/IDF</span>
+      </div>
+    </div>
+
+    <!-- Q18 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 18</span>
+      <div class="question-text">¿Qué información es <strong>indispensable documentar</strong> al realizar el Punchdown de un Patch Panel?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Solo el número del puerto del patch panel es suficiente.</li>
+        <li><span class="option-letter">B</span> El color del cable y la velocidad de internet del edificio.</li>
+        <li class="correct"><span class="option-letter">C</span> Número de puerto del patch panel, ubicación física del wall mount correspondiente, número de habitación/oficina, dispositivo conectado y norma de terminación (568A o 568B). <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> No es necesario documentar; los técnicos deben memorizar las conexiones.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> La <strong>documentación del punchdown</strong> es fundamental según TIA/EIA-606 y es una de las mejores prácticas en instalaciones profesionales. Debe registrarse: (1) <strong>Puerto del patch panel</strong> (1, 2, 3...), (2) <strong>Identificador del cable</strong> (etiqueta en ambos extremos), (3) <strong>Ubicación del Wall Mount</strong> (número de sala/oficina, pared), (4) <strong>Dispositivo conectado</strong> (PC, impresora, etc.), (5) <strong>Norma de terminación</strong> (568A o 568B, nunca mezclar en el mismo cable), (6) <strong>Fecha de instalación</strong>. Sin esta documentación, detectar fallas es muy difícil.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-606 | Administración e Identificación del Cableado</span>
+      </div>
+    </div>
+
+    <!-- Q19 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 19</span>
+      <div class="question-text">En un rack, ¿cómo debe organizarse la <strong>ubicación de los equipos</strong>?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Los equipos más pesados deben instalarse en la parte superior para mejor acceso.</li>
+        <li class="correct"><span class="option-letter">B</span> Equipos pesados (UPS, baterías) abajo; equipos de red (switches, routers) al centro-arriba; patch panels arriba; dejar espacio para ventilación y futura expansión. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">C</span> No importa el orden; todos los equipos funcionan igual en cualquier posición del rack.</li>
+        <li><span class="option-letter">D</span> Los servidores siempre deben ir en la parte superior por ser los más importantes.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> La organización correcta en un rack mejora el flujo de aire, la estabilidad y el acceso para mantenimiento: <strong>Parte inferior (1U-6U)</strong>: UPS y equipos pesados (centro de gravedad bajo para estabilidad). <strong>Parte media</strong>: Switches de acceso y distribución, routers (acceso frecuente). <strong>Parte superior</strong>: Patch panels (conexión a cableado horizontal). <strong>En general</strong>: dejar al menos 1U de espacio entre equipos para ventilación, instalar bandejas de ventilación si es necesario, y reservar espacio para expansión futura. Los cables deben organizarse con organizadores de cable (1.5U) entre equipos.
+        <br><span class="reference-tag">📚 Ref: TIA/EIA-569 | Instalación en Racks | Prácticas Recomendadas</span>
+      </div>
+    </div>
+
+    <!-- Q20 -->
+    <div class="question-card">
+      <span class="question-num">Pregunta 20</span>
+      <div class="question-text">Al realizar pruebas de conectividad y detectar que un <strong>punto de red no funciona</strong>, ¿cuál es el proceso correcto de diagnóstico?</div>
+      <ul class="options">
+        <li><span class="option-letter">A</span> Reemplazar inmediatamente todo el cableado del edificio como medida preventiva.</li>
+        <li><span class="option-letter">B</span> Reiniciar el switch y el router y esperar a que se solucione solo el problema.</li>
+        <li class="correct"><span class="option-letter">C</span> Verificar de extremo a extremo: revisar patch cord del usuario → wall mount → cable horizontal → patch panel → patch cord del rack → switch; usando herramientas como tester de cable, tono y sonda. <span class="correct-badge">✓ Correcta</span></li>
+        <li><span class="option-letter">D</span> Siempre el problema es el switch; reemplazarlo es la única solución.</li>
+      </ul>
+      <div class="explanation-box">
+        <strong>Explicación:</strong> El diagnóstico en cableado estructurado sigue el método <strong>de extremo a extremo</strong> (end-to-end): (1) <em>Patch cord usuario</em>: cambiar por uno conocido como bueno, (2) <em>Wall mount</em>: verificar conexión RJ45 y terminación del módulo, (3) <em>Cable horizontal</em>: usar tester para verificar continuidad y mapa de cables, (4) <em>Punchdown del patch panel</em>: verificar terminación correcta de los 8 conductores, (5) <em>Patch cord rack</em>: cambiar por uno nuevo, (6) <em>Puerto del switch</em>: verificar LEDs de estado y configuración VLAN. Herramientas: cable tester (mapa/longitud), tono y sonda (localización), reflectómetro (TDR) para fallas exactas.
+        <br><span class="reference-tag">📚 Ref: Solución de Problemas | Herramientas de Diagnóstico | TIA/EIA-568</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PARTE II: EJERCICIOS PACKET TRACER ========== -->
+  <div class="section-header page-break" id="parte2">
+    <div class="part-num">Parte II</div>
+    <h2>🖥️ Ejercicios Prácticos en Packet Tracer</h2>
+    <p>5 ejercicios de topología física — Sin configuración de IP — Solo conexiones y documentación</p>
+  </div>
+
+  <!-- EJERCICIO 1 -->
+  <div class="exercise-card" id="ej1">
+    <div class="exercise-header">
+      <div class="exercise-num">1</div>
+      <div>
+        <div class="exercise-title">Red Simple con Topología Física Básica</div>
+        <div class="exercise-subtitle">Duración estimada: 30 minutos | Dificultad: Básica</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Objetivo de Aprendizaje</h4>
+      <p>Construir una red simple identificando y conectando correctamente todos los componentes básicos de una red LAN, elaborando el plano físico y la documentación de conexiones.</p>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Componentes Requeridos</h4>
+      <div class="components-grid">
+        <div class="component-chip">Router Cisco 2911 × 1</div>
+        <div class="component-chip">Switch Cisco 2960 × 1</div>
+        <div class="component-chip">PC Escritorio × 4</div>
+        <div class="component-chip">Servidor × 1</div>
+        <div class="component-chip">Impresora × 1</div>
+        <div class="component-chip">Cable Copper Straight-Through × varios</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Tareas a Realizar</h4>
+      <ul class="task-list">
+        <li>Abrir Cisco Packet Tracer y crear un nuevo proyecto</li>
+        <li>Agregar todos los dispositivos listados al área de trabajo</li>
+        <li>Conectar los 4 PCs al Switch con cables Copper Straight-Through (Fast Ethernet)</li>
+        <li>Conectar el Servidor al Switch (puerto GigabitEthernet si disponible)</li>
+        <li>Conectar la Impresora al Switch</li>
+        <li>Conectar el Switch al Router (GigabitEthernet o FastEthernet)</li>
+        <li>Etiquetar TODOS los dispositivos con nombres descriptivos (PC-Recepción, PC-Ventas, etc.)</li>
+        <li>Etiquetar TODOS los cables con el nombre del puerto de origen y destino</li>
+        <li>Dibujar (en papel o en Packet Tracer) el plano físico con la ubicación de cada dispositivo</li>
+      </ul>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Tabla de Documentación Requerida</h4>
+      <table class="doc-table">
+        <thead>
+          <tr><th>Dispositivo Origen</th><th>Puerto Origen</th><th>Dispositivo Destino</th><th>Puerto Destino</th><th>Tipo Cable</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>PC-1 (Recepción)</td><td>FastEthernet0</td><td>Switch-Cisco-2960</td><td>Fa0/1</td><td>Straight-Through Cat5e</td></tr>
+          <tr><td>PC-2 (Ventas)</td><td>FastEthernet0</td><td>Switch-Cisco-2960</td><td>Fa0/2</td><td>Straight-Through Cat5e</td></tr>
+          <tr><td>PC-3 (Contabilidad)</td><td>FastEthernet0</td><td>Switch-Cisco-2960</td><td>Fa0/3</td><td>Straight-Through Cat5e</td></tr>
+          <tr><td>PC-4 (Gerencia)</td><td>FastEthernet0</td><td>Switch-Cisco-2960</td><td>Fa0/4</td><td>Straight-Through Cat5e</td></tr>
+          <tr><td>Servidor-Web</td><td>FastEthernet0</td><td>Switch-Cisco-2960</td><td>Fa0/24</td><td>Straight-Through Cat6</td></tr>
+          <tr><td>Impresora-Red</td><td>FastEthernet0</td><td>Switch-Cisco-2960</td><td>Fa0/5</td><td>Straight-Through Cat5e</td></tr>
+          <tr><td>Switch-Cisco-2960</td><td>GigabitEth0/1</td><td>Router-Cisco-2911</td><td>GigabitEth0/0</td><td>Straight-Through Cat6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert-box">
+      <strong>Entregable:</strong> Captura de pantalla de Packet Tracer mostrando la topología completa con etiquetas + Tabla de conexiones completada a mano o en computador.
+    </div>
+  </div>
+
+  <!-- EJERCICIO 2 -->
+  <div class="exercise-card" id="ej2">
+    <div class="exercise-header">
+      <div class="exercise-num">2</div>
+      <div>
+        <div class="exercise-title">Implementar Patch Panel y Wall Mounts</div>
+        <div class="exercise-subtitle">Duración estimada: 45 minutos | Dificultad: Media</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Objetivo de Aprendizaje</h4>
+      <p>Agregar infraestructura completa de cableado estructurado a una red básica, implementando correctamente Patch Panel y Wall Mounts, documentando el punchdown según estándar TIA/EIA-606.</p>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Componentes Requeridos</h4>
+      <div class="components-grid">
+        <div class="component-chip">Router Cisco 2911 × 1</div>
+        <div class="component-chip">Switch Cisco 2960 × 1</div>
+        <div class="component-chip">Patch Panel 24 puertos × 1</div>
+        <div class="component-chip">Wall Mount (Face Plate) × 4</div>
+        <div class="component-chip">PC Escritorio × 4</div>
+        <div class="component-chip">Rack (19" Cabinet) × 1</div>
+        <div class="component-chip">Cables Copper S-T × varios</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Tareas a Realizar</h4>
+      <ul class="task-list">
+        <li>Partir desde la red del Ejercicio 1 o crear una nueva</li>
+        <li>Instalar un Rack en el área de comunicaciones del plano</li>
+        <li>Colocar el Switch y el Patch Panel dentro del Rack</li>
+        <li>Instalar los 4 Wall Mounts en las "paredes" del área de trabajo</li>
+        <li>Conectar cada Wall Mount al Patch Panel con cable horizontal (Cat6)</li>
+        <li>Conectar el Patch Panel al Switch con patch cords (Cat6, máx 2m)</li>
+        <li>Conectar los 4 PCs a sus respectivos Wall Mounts con patch cords cortos</li>
+        <li>Etiquetar todos los puertos del Patch Panel con número y destino</li>
+        <li>Completar la tabla de documentación de punchdown</li>
+      </ul>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Tabla Punchdown — Documentación del Patch Panel</h4>
+      <table class="doc-table">
+        <thead>
+          <tr><th>Puerto PP</th><th>Wall Mount</th><th>Oficina/Sala</th><th>Dispositivo</th><th>Norma</th><th>Longitud (m)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Puerto 01</td><td>W.M. Oficina 1 — Pared Sur</td><td>Oficina 1</td><td>PC-Ventas</td><td>T568B</td><td>15 m</td></tr>
+          <tr><td>Puerto 02</td><td>W.M. Oficina 2 — Pared Sur</td><td>Oficina 2</td><td>PC-Contabilidad</td><td>T568B</td><td>18 m</td></tr>
+          <tr><td>Puerto 03</td><td>W.M. Sala Reuniones — Pared Norte</td><td>Sala Reuniones</td><td>PC-Proyector</td><td>T568B</td><td>22 m</td></tr>
+          <tr><td>Puerto 04</td><td>W.M. Recepción — Pared Oeste</td><td>Recepción</td><td>PC-Recepción</td><td>T568B</td><td>12 m</td></tr>
+          <tr><td>Puerto 05-24</td><td>—</td><td>—</td><td>Sin asignar (expansión futura)</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert-box">
+      <strong>Importante:</strong> Todos los cables deben terminarse en norma T568B. Nunca mezclar T568A y T568B en el mismo cable. Etiquetar ambos extremos de cada cable con el mismo identificador.
+    </div>
+  </div>
+
+  <!-- EJERCICIO 3 -->
+  <div class="exercise-card" id="ej3">
+    <div class="exercise-header">
+      <div class="exercise-num">3</div>
+      <div>
+        <div class="exercise-title">Topología Multiubicación con Múltiples Pisos</div>
+        <div class="exercise-subtitle">Duración estimada: 60 minutos | Dificultad: Media-Alta</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Objetivo de Aprendizaje</h4>
+      <p>Diseñar la topología física de un edificio de 2 pisos, implementando la arquitectura jerárquica con MDF en Piso 1 e IDF en Piso 2, conectando los pisos mediante backbone y documentando el cableado completo.</p>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Componentes Requeridos</h4>
+      <div class="components-grid">
+        <div class="component-chip">Router Cisco 2911 × 1 (MDF)</div>
+        <div class="component-chip">Switch Cisco 2960 × 2 (uno por piso)</div>
+        <div class="component-chip">Patch Panel 24P × 2 (uno por piso)</div>
+        <div class="component-chip">Rack 19" × 2 (uno por piso)</div>
+        <div class="component-chip">Wall Mounts × 8 (4 por piso)</div>
+        <div class="component-chip">PC Escritorio × 8 (4 por piso)</div>
+        <div class="component-chip">Cable Backbone Cat6 (entre pisos) × 1</div>
+        <div class="component-chip">Cables Cat6 Straight-Through × varios</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Arquitectura del Sistema</h4>
+      <p style="margin-bottom: 10px;"><strong>Piso 1 — MDF (Main Distribution Frame):</strong></p>
+      <ul style="padding-left: 20px; margin-bottom: 14px;">
+        <li>Rack 1 contiene: Router 2911, Switch 2960-P1, Patch Panel 24P-P1</li>
+        <li>4 Wall Mounts en Piso 1: Oficina 1A, 1B, Recepción, Sala Servidores</li>
+        <li>Cable backbone desde Switch-P1 hacia Switch-P2 (cable Gigabit entre pisos)</li>
+      </ul>
+      <p style="margin-bottom: 10px;"><strong>Piso 2 — IDF (Intermediate Distribution Frame):</strong></p>
+      <ul style="padding-left: 20px;">
+        <li>Rack 2 contiene: Switch 2960-P2, Patch Panel 24P-P2</li>
+        <li>4 Wall Mounts en Piso 2: Oficina 2A, 2B, Sala Reuniones, Sala Capacitación</li>
+        <li>Backbone de retorno desde Switch-P2 hacia Switch-P1 (ya conectado)</li>
+      </ul>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Tabla de Documentación Ampliada</h4>
+      <table class="doc-table">
+        <thead>
+          <tr><th>Piso</th><th>Rack</th><th>Puerto PP</th><th>Wall Mount</th><th>Sala</th><th>Dispositivo</th><th>Long.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Piso 1</td><td>Rack 1 (MDF)</td><td>PP1 — P01</td><td>WM-1A — Of. 1A Sur</td><td>Oficina 1A</td><td>PC-Admin</td><td>20 m</td></tr>
+          <tr><td>Piso 1</td><td>Rack 1 (MDF)</td><td>PP1 — P02</td><td>WM-1B — Of. 1B Norte</td><td>Oficina 1B</td><td>PC-Ventas</td><td>25 m</td></tr>
+          <tr><td>Piso 1</td><td>Rack 1 (MDF)</td><td>PP1 — P03</td><td>WM-Rec. — Hall Occ.</td><td>Recepción</td><td>PC-Recep.</td><td>15 m</td></tr>
+          <tr><td>Piso 1</td><td>Rack 1 (MDF)</td><td>PP1 — P04</td><td>WM-Srv — Sala Serv.</td><td>Sala Serv.</td><td>Servidor</td><td>10 m</td></tr>
+          <tr><td>Piso 2</td><td>Rack 2 (IDF)</td><td>PP2 — P01</td><td>WM-2A — Of. 2A Sur</td><td>Oficina 2A</td><td>PC-Diseño</td><td>18 m</td></tr>
+          <tr><td>Piso 2</td><td>Rack 2 (IDF)</td><td>PP2 — P02</td><td>WM-2B — Of. 2B Norte</td><td>Oficina 2B</td><td>PC-Prog.</td><td>22 m</td></tr>
+          <tr><td>Piso 2</td><td>Rack 2 (IDF)</td><td>PP2 — P03</td><td>WM-Reun. — Sala Reun.</td><td>Sala Reun.</td><td>Laptop</td><td>28 m</td></tr>
+          <tr><td>Piso 2</td><td>Rack 2 (IDF)</td><td>PP2 — P04</td><td>WM-Cap. — Sala Cap.</td><td>Sala Cap.</td><td>PC-Docente</td><td>30 m</td></tr>
+          <tr><td>P1→P2</td><td>R1-R2</td><td>—</td><td>—</td><td>Shaft/Pleno</td><td><strong>BACKBONE</strong></td><td>15 m</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert-box">
+      <strong>Entregable:</strong> Plano arquitectónico de ambos pisos (dibujado), topología en Packet Tracer con etiquetas, y tabla de documentación completa. El backbone entre pisos debe estar claramente identificado.
+    </div>
+  </div>
+
+  <!-- EJERCICIO 4 -->
+  <div class="exercise-card" id="ej4">
+    <div class="exercise-header">
+      <div class="exercise-num">4</div>
+      <div>
+        <div class="exercise-title">Empresa Mediana con Múltiples Servidores y Servicios</div>
+        <div class="exercise-subtitle">Duración estimada: 75 minutos | Dificultad: Alta</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Objetivo de Aprendizaje</h4>
+      <p>Diseñar e implementar la infraestructura completa de red de una empresa mediana con múltiples servidores, documentando completamente el cableado, resolviendo posibles problemas de interferencias y planificando la distribución de puntos de red.</p>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Componentes Requeridos</h4>
+      <div class="components-grid">
+        <div class="component-chip">Router Cisco 2911 × 1</div>
+        <div class="component-chip">Switch Cisco 2960 × 2</div>
+        <div class="component-chip">Patch Panel 24P × 1</div>
+        <div class="component-chip">Servidor Web × 1</div>
+        <div class="component-chip">Servidor Archivos × 1</div>
+        <div class="component-chip">Servidor DNS/DHCP × 1</div>
+        <div class="component-chip">Wall Mounts × 6</div>
+        <div class="component-chip">PC Escritorio × 6</div>
+        <div class="component-chip">Impresora Red × 2</div>
+        <div class="component-chip">Laptop × 2</div>
+        <div class="component-chip">Rack 19" × 1</div>
+        <div class="component-chip">Cables Cat6 × varios</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Tareas a Realizar</h4>
+      <ul class="task-list">
+        <li>Diseñar el plano físico de la empresa antes de implementar en Packet Tracer</li>
+        <li>Identificar el cuarto de telecomunicaciones y ubicar el Rack Central</li>
+        <li>Conectar ambos Switches al Router (uplinks Gigabit)</li>
+        <li>Conectar los 3 Servidores directamente al Switch-1 (alta prioridad)</li>
+        <li>Conectar el Patch Panel al Switch-2 (conexiones de usuario)</li>
+        <li>Instalar los 6 Wall Mounts en las oficinas y conectar al Patch Panel</li>
+        <li>Conectar PCs, Laptops e Impresoras a sus respectivos Wall Mounts</li>
+        <li>Documentar COMPLETAMENTE: plano, punchdown, especificaciones de cables</li>
+        <li>Identificar posibles puntos de interferencia y proponer soluciones</li>
+      </ul>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Especificaciones de Cables a Documentar</h4>
+      <table class="doc-table">
+        <thead>
+          <tr><th>Tramo</th><th>Tipo Cable</th><th>Norma</th><th>Long. Máx.</th><th>Velocidad</th><th>Observación</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>WM → Patch Panel (horizontal)</td><td>UTP Cat6</td><td>T568B</td><td>90 m</td><td>1 Gbps</td><td>Cable fijo en canaleta</td></tr>
+          <tr><td>Patch Panel → Switch (rack)</td><td>UTP Cat6 Patch Cord</td><td>T568B</td><td>5 m</td><td>1 Gbps</td><td>Flexible, corto</td></tr>
+          <tr><td>Usuario → Wall Mount</td><td>UTP Cat6 Patch Cord</td><td>T568B</td><td>5 m</td><td>1 Gbps</td><td>Visible, etiquetado</td></tr>
+          <tr><td>Switch → Router (uplink)</td><td>UTP Cat6 S-T</td><td>T568B</td><td>10 m</td><td>1 Gbps</td><td>GE0/0 a GE0/1</td></tr>
+          <tr><td>Switch-1 → Switch-2 (troncal)</td><td>UTP Cat6 S-T</td><td>T568B</td><td>15 m</td><td>1 Gbps</td><td>Inter-switch</td></tr>
+          <tr><td>Servidores → Switch-1</td><td>UTP Cat6 S-T</td><td>T568B</td><td>3 m</td><td>1 Gbps</td><td>En rack, corto</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Análisis de Interferencias (EMI)</h4>
+      <p style="margin-bottom: 10px;">Identifica y resuelve los siguientes problemas potenciales en el diseño:</p>
+      <ul class="task-list">
+        <li>¿Existen cables de red que corran paralelos a líneas eléctricas? → Proponer separación mínima de 15 cm</li>
+        <li>¿Hay luminarias fluorescentes cerca de las canaletas? → Reubicar o usar cable FTP</li>
+        <li>¿El Rack está cerca de equipos con motores (aires acondicionados)? → Asegurar distancia &gt;1m</li>
+        <li>¿Los cables cruzan alguna línea eléctrica? → Verificar que el cruce sea a 90°</li>
+      </ul>
+    </div>
+
+    <div class="alert-box">
+      <strong>Entregable Completo:</strong> (1) Plano físico dibujado con escala aproximada, (2) Topología en Packet Tracer completamente etiquetada, (3) Tabla de punchdown completa, (4) Tabla de especificaciones de cables, (5) Análisis de interferencias con soluciones propuestas.
+    </div>
+  </div>
+
+  <!-- EJERCICIO 5 -->
+  <div class="exercise-card" id="ej5">
+    <div class="exercise-header">
+      <div class="exercise-num">5</div>
+      <div>
+        <div class="exercise-title">Caso de Estudio — Solución de Problemas Físicos</div>
+        <div class="exercise-subtitle">Duración estimada: 60 minutos | Dificultad: Alta</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Objetivo de Aprendizaje</h4>
+      <p>Analizar una red existente con problemas de cableado estructurado, identificar todos los errores técnicos presentes, rediseñar la topología de forma correcta y documentar la solución implementada.</p>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Escenario — Red "Mal Diseñada" de MiniRed Ltda.</h4>
+      <p style="margin-bottom: 12px;">Se ha detectado que la red de <strong>MiniRed Ltda.</strong> presenta múltiples fallas intermitentes, baja velocidad y puntos de red que no funcionan. El técnico anterior dejó la red en el siguiente estado:</p>
+      <ul style="padding-left: 20px;">
+        <li>Un cable de 120 metros conecta directamente un PC en el piso 2 al Switch en piso 1 (sin patch panel)</li>
+        <li>El Switch está conectado al Router con cable <strong>Crossover</strong></li>
+        <li>Dos cables de red corren paralelos (tocándose) con el cable de 220V por 5 metros</li>
+        <li>El Patch Panel tiene los puertos 1-8 en norma T568A y puertos 9-16 en norma T568B</li>
+        <li>No hay documentación de ningún cable ni etiqueta en ningún dispositivo</li>
+        <li>El Switch está encima del Router sin espacio de ventilación entre ellos</li>
+        <li>Hay un cable de red enrollado en 10 vueltas formando una bobina junto al motor del ascensor</li>
+        <li>Tres PCs están conectados en "cadena" (PC1→PC2→PC3) sin usar el switch</li>
+      </ul>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Tarea: Identificar y Corregir Problemas</h4>
+      <p style="margin-bottom: 12px;">Para cada problema listado en el escenario:</p>
+      <ul class="task-list">
+        <li>Explicar por qué es un error técnico (norma o principio que viola)</li>
+        <li>Describir cómo afecta el funcionamiento de la red</li>
+        <li>Proponer la solución correcta según estándares TIA/EIA</li>
+        <li>Implementar la solución corregida en Packet Tracer</li>
+      </ul>
+    </div>
+
+    <div class="exercise-block">
+      <h4>Tabla de Diagnóstico y Solución</h4>
+      <ul class="problem-list">
+        <li class="problem">
+          <strong>Problema 1 — Cable de 120m:</strong> Viola la distancia máxima de 100m del canal horizontal (TIA/EIA-568). Causará atenuación excesiva, errores de transmisión y pérdida de conectividad Gigabit.
+          <br><em>Solución:</em> Instalar un IDF en Piso 2 con Rack, Switch y Patch Panel. Cable backbone entre pisos ≤90m + patch cords ≤10m.
+        </li>
+        <li class="solution">✓ Implementado: IDF Piso 2 con Switch-P2 y Patch Panel-P2, backbone de 15m entre racks.</li>
+
+        <li class="problem">
+          <strong>Problema 2 — Cable Crossover Switch-Router:</strong> Los switches y routers modernos con Auto-MDIX aceptan cualquier cable, pero en equipos más viejos, Switch→Router requiere cable Straight-Through. Además, indica desconocimiento de norma T568B.
+          <br><em>Solución:</em> Reemplazar por cable Straight-Through Cat6. Verificar que ambos extremos tienen T568B.
+        </li>
+        <li class="solution">✓ Implementado: Cable Straight-Through Cat6 T568B entre Switch (GE0/1) y Router (GE0/0).</li>
+
+        <li class="problem">
+          <strong>Problema 3 — Cables red + 220V paralelos:</strong> Genera interferencia electromagnética (EMI/RFI). El campo electromagnético del cable eléctrico induce ruido en los conductores de datos, causando errores, CRC y baja velocidad.
+          <br><em>Solución:</em> Separar canaletas mínimo 15-30 cm. Si deben cruzarse, hacerlo a 90°. Si es inevitable la cercanía, usar cable FTP con apantallamiento.
+        </li>
+        <li class="solution">✓ Implementado: Canaletas separadas. Cruce a 90° donde es necesario. Cable FTP en tramo crítico.</li>
+
+        <li class="problem">
+          <strong>Problema 4 — Patch Panel mixto T568A/T568B:</strong> Viola la norma TIA/EIA-568 que exige consistencia. Un cable terminado en A en el patch panel y B en el wall mount es un cable crossover involuntario, causando fallas de conectividad.
+          <br><em>Solución:</em> Reterminar TODOS los puertos en la misma norma (preferiblemente T568B que es la estándar en Chile). Documentar la norma utilizada.
+        </li>
+        <li class="solution">✓ Implementado: Todos los puertos del Patch Panel reterminados en T568B. Tabla de punchdown creada.</li>
+
+        <li class="problem">
+          <strong>Problema 5 — Sin documentación ni etiquetas:</strong> Viola TIA/EIA-606 (Administración del Cableado). Sin documentación, cualquier falla requiere probar cable por cable, aumentando el tiempo de reparación de minutos a horas.
+          <br><em>Solución:</em> Etiquetar TODOS los cables en ambos extremos con identificador único. Crear tabla de punchdown completa. Etiquetar todos los dispositivos y puertos.
+        </li>
+        <li class="solution">✓ Implementado: Sistema de etiquetado completo. Tabla de punchdown con 16 entradas. Plano actualizado.</li>
+
+        <li class="problem">
+          <strong>Problema 6 — Switch sobre Router sin ventilación:</strong> Los equipos de red generan calor. Sin ventilación, la temperatura aumenta, causando sobrecalentamiento, apagados automáticos, reducción de vida útil y fallas intermitentes.
+          <br><em>Solución:</em> Dejar al menos 1U (1.75 pulgadas) entre equipos. Instalar bandeja de ventilación (1.5U) si el rack está muy lleno. Verificar flujo de aire frontal-trasero.
+        </li>
+        <li class="solution">✓ Implementado: Rack reorganizado con 1U de espacio entre Switch y Router. Bandeja ventilación agregada.</li>
+
+        <li class="problem">
+          <strong>Problema 7 — Cable enrollado cerca del ascensor:</strong> Doble problema: (a) El cable enrollado forma una bobina que actúa como inductor, degradando la señal. (b) El motor del ascensor genera campos electromagnéticos intensos que inducen ruido en los conductores.
+          <br><em>Solución:</em> Tender el cable de forma recta por canaleta. Alejarlo mínimo 1m del motor. Si es inevitable, usar cable FTP.
+        </li>
+        <li class="solution">✓ Implementado: Cable retendido en canaleta recta, alejado 1.2m del motor del ascensor.</li>
+
+        <li class="problem">
+          <strong>Problema 8 — PCs en cadena sin switch:</strong> Conexión de PCs en cascada (daisy chain) no funciona en Ethernet estándar. Ethernet requiere una topología en estrella con un switch central. Esta conexión viola el estándar IEEE 802.3.
+          <br><em>Solución:</em> Conectar cada PC directamente al Switch mediante su propio cable y Wall Mount. Nunca compartir cables entre usuarios.
+        </li>
+        <li class="solution">✓ Implementado: 3 Wall Mounts instalados, cada PC conectado a su propio puerto del Switch.</li>
+      </ul>
+    </div>
+
+    <div class="alert-box">
+      <strong>Entregable:</strong> (1) Descripción escrita de cada problema y solución, (2) Topología corregida en Packet Tracer, (3) Tabla de punchdown creada para la red corregida, (4) Plano físico final de la instalación corregida con todos los elementos etiquetados.
+    </div>
+  </div>
+
+  <!-- ========== PARTE III: CLAVE ========== -->
+  <div class="section-header page-break" id="parte3">
+    <div class="part-num">Parte III</div>
+    <h2>✅ Clave de Respuestas</h2>
+    <p>Respuestas correctas con explicaciones técnicas detalladas de 50-100 palabras</p>
+  </div>
+
+  <div style="background:white; border-radius:16px; padding:30px 40px; margin:20px 0; box-shadow:0 4px 20px rgba(0,0,0,0.07);">
+    <h3 style="color:#8E44AD; font-size:1.3em; margin-bottom:20px; border-bottom:2px solid #F5EEF8; padding-bottom:10px;">Resumen de Respuestas Correctas</h3>
+    <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:20px;">
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P1</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">B</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P2</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P3</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P4</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P5</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P6</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P7</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">B</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P8</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P9</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">B</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P10</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P11</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P12</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">B</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P13</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">A</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P14</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P15</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P16</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">B</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P17</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P18</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P19</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">B</span></div>
+      <div style="background:#EBF5FB; border-radius:8px; padding:12px; text-align:center;"><strong>P20</strong><br><span style="font-size:1.5em;font-weight:900;color:#27AE60;">C</span></div>
+    </div>
+    <p style="color:#7F8C8D; font-size:0.9em; text-align:center;">Las explicaciones detalladas de cada respuesta se encuentran <strong>dentro de cada pregunta</strong> en la Parte I (caja azul "Explicación").</p>
+  </div>
+
+  <!-- ========== ANEXOS ========== -->
+  <div class="section-header" id="anexos">
+    <div class="part-num">Anexos</div>
+    <h2>📊 Tablas de Referencia y Normas TIA/EIA</h2>
+    <p>Material de consulta para aplicar en los ejercicios y exámenes</p>
+  </div>
+
+  <div class="index-section">
+    <h2>📐 Anexo A — Especificaciones de Categorías de Cable</h2>
+    <table class="annex-table">
+      <thead>
+        <tr><th>Categoría</th><th>Frecuencia</th><th>Velocidad Máx.</th><th>Distancia</th><th>Uso Principal</th><th>Estado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cat3</td><td>16 MHz</td><td>10 Mbps</td><td>100 m</td><td>Telefónica, Token Ring (obsoleto)</td><td>❌ Obsoleto</td></tr>
+        <tr><td>Cat4</td><td>20 MHz</td><td>16 Mbps</td><td>100 m</td><td>Token Ring 16 Mbps (obsoleto)</td><td>❌ Obsoleto</td></tr>
+        <tr><td>Cat5</td><td>100 MHz</td><td>100 Mbps</td><td>100 m</td><td>Fast Ethernet 100BASE-TX</td><td>⚠️ No recomendado</td></tr>
+        <tr><td><strong>Cat5e</strong></td><td>100 MHz</td><td><strong>1 Gbps</strong></td><td>100 m</td><td>Gigabit Ethernet 1000BASE-T</td><td>✅ Aceptable</td></tr>
+        <tr><td><strong>Cat6</strong></td><td>250 MHz</td><td><strong>10 Gbps @ 55m</strong><br>1 Gbps @ 100m</td><td>55/100 m</td><td>10GBASE-T (limitado), 1GBASE-T</td><td>✅ Recomendado</td></tr>
+        <tr><td><strong>Cat6A</strong></td><td>500 MHz</td><td><strong>10 Gbps @ 100m</strong></td><td>100 m</td><td>10GBASE-T pleno, centros de datos</td><td>✅✅ Muy recomendado</td></tr>
+        <tr><td>Cat7</td><td>600 MHz</td><td>10 Gbps @ 100m</td><td>100 m</td><td>Centros de datos, S/STP</td><td>✅ Data centers</td></tr>
+        <tr><td>Cat8</td><td>2000 MHz</td><td>25/40 Gbps @ 30m</td><td>30 m</td><td>25GBASE-T, 40GBASE-T (DC)</td><td>✅ Centros de datos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="index-section">
+    <h2>🔌 Anexo B — Norma T568A vs T568B (Colores de Pins)</h2>
+    <table class="annex-table">
+      <thead>
+        <tr><th>Pin</th><th>Par</th><th>T568A — Color</th><th>T568B — Color</th><th>Función</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Par 3</td><td style="background:#90EE90">Blanco-Verde</td><td style="background:#FFA500;color:white">Blanco-Naranja</td><td>TX+</td></tr>
+        <tr><td>2</td><td>Par 3</td><td style="background:#228B22;color:white">Verde</td><td style="background:#FF8C00;color:white">Naranja</td><td>TX-</td></tr>
+        <tr><td>3</td><td>Par 2</td><td style="background:#FFA500;color:white">Blanco-Naranja</td><td style="background:#90EE90">Blanco-Verde</td><td>RX+</td></tr>
+        <tr><td>4</td><td>Par 1</td><td style="background:#6495ED;color:white">Azul</td><td style="background:#6495ED;color:white">Azul</td><td>BI_DA+</td></tr>
+        <tr><td>5</td><td>Par 1</td><td style="background:#B0C4DE">Blanco-Azul</td><td style="background:#B0C4DE">Blanco-Azul</td><td>BI_DA-</td></tr>
+        <tr><td>6</td><td>Par 2</td><td style="background:#FF8C00;color:white">Naranja</td><td style="background:#228B22;color:white">Verde</td><td>RX-</td></tr>
+        <tr><td>7</td><td>Par 4</td><td style="background:#D2B48C">Blanco-Café</td><td style="background:#D2B48C">Blanco-Café</td><td>BI_DB+</td></tr>
+        <tr><td>8</td><td>Par 4</td><td style="background:#8B4513;color:white">Café</td><td style="background:#8B4513;color:white">Café</td><td>BI_DB-</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:14px; color:#555; font-size:0.9em;"><strong>Cable Straight-Through:</strong> T568B - T568B (o T568A - T568A). <strong>Cable Crossover:</strong> T568A - T568B. <strong>Regla práctica:</strong> En Chile se usa predominantemente T568B.</p>
+  </div>
+
+  <div class="index-section">
+    <h2>📏 Anexo C — Distancias Máximas del Canal de Cableado</h2>
+    <table class="annex-table">
+      <thead>
+        <tr><th>Tramo</th><th>Distancia Máxima</th><th>Norma</th><th>Observación</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cable horizontal fijo (WM → Patch Panel)</td><td><strong>90 metros</strong></td><td>TIA/EIA-568</td><td>Cable permanente, en canaleta</td></tr>
+        <tr><td>Patch cord usuario (PC → Wall Mount)</td><td><strong>5 metros</strong></td><td>TIA/EIA-568</td><td>Flexible, visible</td></tr>
+        <tr><td>Patch cord rack (PP → Switch)</td><td><strong>5 metros</strong></td><td>TIA/EIA-568</td><td>En rack, corto</td></tr>
+        <tr><td>Canal total (suma de todos los tramos)</td><td><strong>100 metros</strong></td><td>TIA/EIA-568</td><td>Límite absoluto para Cat5e/Cat6</td></tr>
+        <tr><td>Backbone entre pisos (UTP)</td><td><strong>90 metros</strong></td><td>TIA/EIA-568</td><td>MDF-IDF</td></tr>
+        <tr><td>Backbone (Fibra OM3 multimodo)</td><td><strong>300 metros</strong></td><td>TIA/EIA-568</td><td>IEEE 802.3z 1000BASE-SX</td></tr>
+        <tr><td>Fibra monomodo OS2</td><td><strong>10 kilómetros+</strong></td><td>IEEE 802.3</td><td>Conexiones WAN/campus</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="index-section">
+    <h2>📋 Anexo D — Normas TIA/EIA Resumidas</h2>
+    <table class="annex-table">
+      <thead>
+        <tr><th>Norma</th><th>Título</th><th>Contenido Principal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>TIA/EIA-568A</strong></td><td>Commercial Building Telecommunications Cabling Standard</td><td>Primera versión. Especifica T568A como pinout principal.</td></tr>
+        <tr><td><strong>TIA/EIA-568B</strong></td><td>Commercial Building Telecommunications Cabling Standard (Rev.)</td><td>Versión mejorada. T568B preferida para instalaciones nuevas. Incluye Cat5e, Cat6, Cat6A.</td></tr>
+        <tr><td><strong>TIA/EIA-569</strong></td><td>Commercial Building Standard for Telecommunications Pathways and Spaces</td><td>Espacios físicos, cuartos de telecomunicaciones, separación de cables eléctricos y datos, canaletas.</td></tr>
+        <tr><td><strong>TIA/EIA-570</strong></td><td>Residential Telecommunications Cabling Standard</td><td>Cableado para residencias y edificios pequeños (uso doméstico).</td></tr>
+        <tr><td><strong>TIA/EIA-606</strong></td><td>Administration Standard for the Telecommunications Infrastructure</td><td>Sistema de identificación, etiquetado y documentación del cableado estructurado.</td></tr>
+        <tr><td><strong>TIA/EIA-607</strong></td><td>Commercial Building Grounding (Earthing) and Bonding Requirements</td><td>Tierra eléctrica y equipotencialidad en telecomunicaciones.</td></tr>
+        <tr><td><strong>IEEE 802.3ab</strong></td><td>1000BASE-T Gigabit Ethernet over Copper</td><td>Gigabit Ethernet sobre cable de cobre UTP Cat5e o superior. 4 pares, 250 Mbps por par.</td></tr>
+        <tr><td><strong>IEEE 802.3an</strong></td><td>10GBASE-T 10 Gigabit Ethernet over Copper</td><td>10 GbE sobre Cat6 (55m) o Cat6A/Cat7 (100m).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>
+    <strong>Guía de Repaso — Cableado Estructurado</strong> | 3° Medio TP Conectividad y Redes<br>
+    Asignatura: Instalación de Redes | Módulo 1 | Elaborado para trabajo autónomo<br>
+    Normas: TIA/EIA-568A/B, TIA/EIA-569, TIA/EIA-606, IEEE 802.3ab/an | Cisco Packet Tracer 8.x
+  </p>
+</div>
+
+</body>
+</html>
