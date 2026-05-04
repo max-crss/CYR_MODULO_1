@@ -5,10 +5,9 @@ Instalación de Redes – 3° Medio TP Conectividad y Redes.
 """
 
 from pptx import Presentation
-from pptx.util import Inches, Pt, Emu
+from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
-from pptx.util import Inches, Pt
 
 # ── Colores ──────────────────────────────────────────────────────────────────
 DARK_BLUE   = RGBColor(0x1F, 0x38, 0x64)   # #1F3864
