@@ -16,7 +16,6 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
-import copy
 
 # ── Colores ────────────────────────────────────────────────────────────────────
 AZUL_OSCURO = RGBColor(0x1F, 0x38, 0x64)   # headers
@@ -78,7 +77,6 @@ def answer_lines(doc, count=3, indent=False):
         run.font.size = Pt(11)
         if indent:
             para.paragraph_format.left_indent = Inches(0.3)
-    return
 
 
 def add_exercise_header(doc, number, title):
