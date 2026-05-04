@@ -5,11 +5,9 @@ Conectividad y Redes – 3° Medio TP
 """
 
 from pptx import Presentation
-from pptx.util import Inches, Pt, Emu
+from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
-from pptx.util import Inches, Pt
-import copy
 
 # ── Colores ────────────────────────────────────────────────────────────────────
 AZUL_OSCURO = RGBColor(0x1F, 0x38, 0x64)   # fondo
@@ -44,8 +42,6 @@ def blank_slide(prs):
 
 def set_bg(slide, color=AZUL_OSCURO):
     """Rellena el fondo de la diapositiva con el color dado."""
-    from pptx.oxml.ns import qn
-    from lxml import etree
     bg = slide.background
     fill = bg.fill
     fill.solid()
@@ -113,7 +109,7 @@ def add_table(slide, headers, rows,
     """Tabla con header naranja y filas alternas azul oscuro / azul medio."""
     n_cols = len(headers)
     n_rows = len(rows) + 1  # +1 para header
-    col_w  = width // n_cols
+    col_w  = int(width / n_cols)
 
     tbl = slide.shapes.add_table(n_rows, n_cols,
                                   left, top,
